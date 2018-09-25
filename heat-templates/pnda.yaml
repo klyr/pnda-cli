@@ -160,5 +160,9 @@ outputs:
       Otherwise, orchestration steps necessary to properly the scale the clusters will not be executed"
 
   networkID:
+{% if useExistingNetwork is equalto false %}
     value: { get_resource: publicNetwork }
+{% else %}
+    value: { get_param: existingNetworkId }
+{% endif %}
     description: Network ID of the network used by PNDA instances
